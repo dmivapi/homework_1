@@ -1,0 +1,12 @@
+<Context>
+<Resource name="jdbc/library"
+          auth="Container"
+          type="javax.sql.DataSource"
+          maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+          username="test" password="test"
+          driverClassName="com.mysql.cj.jdbc.Driver"
+          factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+          defaultAutoCommit="false"
+          defaultTransactionIsolation="READ_COMMITTED"
+          url="jdbc:mysql://localhost:3306/Library?serverTimezone=EST5EDT"/>
+</Context>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taglib xmlns="http://java.sun.com/xml/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+<tlib-version> 1.0 </tlib-version>
+    <short-name> library-aid </short-name>
+    <uri> FinalProject.dmivapi.epam.com/WEB-INF/library-aid.tld </uri>
+    <tag>
+        <name> getLoanStatusBadge </name>
+        <tag-class>com.epam.dmivapi.web.tag.LoanStatusBadge</tag-class>
+        <body-content> empty </body-content>
+
+        <attribute>
+            <name>loanBean</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.epam.dmivapi.db.bean.LoanBean</type>
+        </attribute>
+    </tag>
+</taglib>

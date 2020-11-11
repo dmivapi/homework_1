@@ -1,0 +1,37 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/WEB-INF/jspf/directive/imports.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglibs.jspf" %>
+
+<html>
+
+<h:head title="list_books_jsp.page.title" />
+
+<body>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading"><fmt:message key="header_jsp.app.title"/> </div>
+        <div class="list-group list-group-flush">
+            <h:left_side_actions_panel role="${sessionScope[ContextParam.CURRENT_USER_ROLE]}" />
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <button class="btn btn-outline-secondary btn-sm" id="menu-toggle"><fmt:message key="header_jsp.toggle"/></button>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h:top-navbar-content />
+        </nav>
+
+        <div class="container-fluid">
+            <form id="${ContextParam.MAIN_PAGE_FORM}" action="${ContextParam.CONTROLLER_SERVLET}" method="post">
+                <input type="hidden" name="${ContextParam.COMMAND}" id="${ContextParam.COMMAND}" >
+
+            <!-- Specific page content starts after inserting this file -->
