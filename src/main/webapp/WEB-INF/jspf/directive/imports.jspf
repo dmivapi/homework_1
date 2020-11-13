@@ -1,3 +1,3 @@
-<%@ page import="com.epam.dmivapi.web.ContextParam" %>
-<%@ page import="com.epam.dmivapi.db.entity.User.Role" %>
-<%@ page import="com.epam.dmivapi.web.command.Command" %>
+<%@ page import="com.epam.dmivapi.ContextParam" %>
+<%@ page import="com.epam.dmivapi.entity.User.Role" %>
+<%@ page import="com.epam.dmivapi.service.impl.command.Command" %>

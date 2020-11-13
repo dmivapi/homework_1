@@ -9,14 +9,14 @@
     <uri> FinalProject.dmivapi.epam.com/WEB-INF/library-aid.tld </uri>
     <tag>
         <name> getLoanStatusBadge </name>
-        <tag-class>com.epam.dmivapi.web.tag.LoanStatusBadge</tag-class>
+        <tag-class>com.epam.dmivapi.tag.LoanStatusBadge</tag-class>
         <body-content> empty </body-content>
 
         <attribute>
             <name>loanBean</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
-            <type>com.epam.dmivapi.db.bean.LoanBean</type>
+            <type>com.epam.dmivapi.bean.LoanBean</type>
         </attribute>
     </tag>
 </taglib>

@@ -1,5 +1,5 @@
 <%@ page import="java.time.LocalDate" %>
-<%@ page import="com.epam.dmivapi.db.bean.LoanBean" %>
+<%@ page import="com.epam.dmivapi.bean.LoanBean" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
     <div class="row">

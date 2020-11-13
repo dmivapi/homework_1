@@ -1,9 +1,9 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ tag import="com.epam.dmivapi.db.entity.User.Role" %>
-<%@ tag import="com.epam.dmivapi.web.ContextParam" %>
-<%@ tag import="com.epam.dmivapi.web.command.Command" %>
+<%@ tag import="com.epam.dmivapi.entity.User.Role" %>
+<%@ tag import="com.epam.dmivapi.ContextParam" %>
+<%@ tag import="com.epam.dmivapi.service.impl.command.Command" %>
 
 <%@ attribute name="role" required="true" %>
 
@@ -35,16 +35,14 @@
         <a href="${Command.LIST_BOOKS.systemName}" ${aclasses}><fmt:message key="left_side_actions_panel_tag.books"/></a>
     </c:otherwise>
 </c:choose>
-<%--</form>--%>
-
-<%--$(this).html()--%>
 
 <script>
     $(document).ready(function(){
         $('.lsa-panel-link').click(function(event)
         {
             event.preventDefault();
-            $("#${ContextParam.COMMAND}").val($(this).attr('href'));
+            $('#${ContextParam.MAIN_PAGE_FORM}').attr('action', $(this).attr('href'));
+            <%--$("#${ContextParam.COMMAND}").val($(this).attr('href'));--%>
             $('#${ContextParam.PGN_CURRENT_PAGE}').val(1);
             $('#${ContextParam.MAIN_PAGE_FORM}').submit();
         });

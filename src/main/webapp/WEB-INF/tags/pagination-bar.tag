@@ -1,7 +1,7 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ tag import="com.epam.dmivapi.web.ContextParam" %>
+<%@ tag import="com.epam.dmivapi.ContextParam" %>
 
 <%@ attribute name="baseLink" required="true" %>
 
@@ -41,7 +41,7 @@
     $(document).ready(function(){
         $('.page-link').click(function(e) {
             e.preventDefault();
-            $('#${ContextParam.COMMAND}').val(
+            $('#${ContextParam.MAIN_PAGE_FORM}').attr('action',
                 $('#${ContextParam.SELF_COMMAND}').val()
             );
             $('#${ContextParam.PGN_CURRENT_PAGE}').val($(this).attr('href'));

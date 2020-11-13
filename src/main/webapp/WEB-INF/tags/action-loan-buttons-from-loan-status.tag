@@ -1,8 +1,8 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ tag import="com.epam.dmivapi.web.ContextParam" %>
-<%@ tag import="com.epam.dmivapi.web.command.Command" %>
+<%@ tag import="com.epam.dmivapi.ContextParam" %>
+<%@ tag import="com.epam.dmivapi.service.impl.command.Command" %>
 
 <%--
     Buttons representing actions that can be performed
@@ -10,7 +10,7 @@
 --%>
 
 <%@ attribute name="loanStatus" required="true"
-              type="com.epam.dmivapi.db.entity.Loan.LoanStatus"
+              type="com.epam.dmivapi.entity.Loan.LoanStatus"
               rtexprvalue="true"
 %>
 <%@ attribute name="loanBlocked" required="true"
@@ -56,7 +56,8 @@
     $(document).ready(function(){
         $('.dropdown-item').click(function(e)
         {
-            $('#${ContextParam.COMMAND}').val($(this).data('action'));
+            <%--$('#${ContextParam.COMMAND}').val($(this).data('action'));--%>
+            $('#${ContextParam.MAIN_PAGE_FORM}').attr('action', $(this).data('action'));
             $('#${ContextParam.LOAN_ID_TO_PROCESS}').val($(this).data('lid'));
             $('#${ContextParam.MAIN_PAGE_FORM}').submit();
         });

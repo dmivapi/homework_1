@@ -25,19 +25,3 @@
          </div>
         </c:if>
     </div>
-
-
-
-  <%-- <c:if test="${type eq email}">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <div class="input-group-text" id="btnGroupAddon">@</div>
-        </div>
-  </c:if>
-
-    <input type="${type}" name="${entity}" class="form-control" id="${entity}Input" placeholder="${placeholderLocalized}">
-
-  <c:if test="${type eq email}">
-    </div>
-   </c:if>
---%>
