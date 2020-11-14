@@ -1,9 +1,9 @@
 package com.epam.dmivapi.repository.impl;
 
+import com.epam.dmivapi.dto.LoanStatus;
 import com.epam.dmivapi.repository.impl.db.DBManager;
 import com.epam.dmivapi.repository.impl.db.EntityMapper;
-import com.epam.dmivapi.bean.LoanBean;
-import com.epam.dmivapi.entity.Loan;
+import com.epam.dmivapi.model.Loan;
 import com.epam.dmivapi.repository.LoanRepository;
 import org.springframework.stereotype.Repository;
 
@@ -51,13 +51,44 @@ public class LoanRepositoryImpl implements LoanRepository {
 
     private static final String SQL_BOOK_COPY_ID_ITEM = " book_copy_id=?"; // can be repeated during appending
 
+    @Override
+    public List<Loan> findAll(
+            String genreLanguageCode,
+            int currentPage,
+            int recordsPerPage
+    ){
+        return findLoans(null, null, genreLanguageCode, currentPage, recordsPerPage);
+    }
+
+    @Override
+    public List<Loan> findLoansByUserId(
+            int userId,
+            String genreLanguageCode,
+            int currentPage,
+            int recordsPerPage
+    ) {
+        return findLoans(null, userId, genreLanguageCode, currentPage, recordsPerPage);
+    }
+
+    @Override
+    public int countLoans(String genreLanguageCode) {
+        return countLoans(null, null, genreLanguageCode);
+    }
+
+    @Override
+    public int countLoansByUserId(int userId, String genreLanguageCode) {
+        return countLoans(null, userId, genreLanguageCode);
+    }
+
+// ------------------------------------------------------------------------------------------
+
     // generates SQL fragment for dates filtering based on status given in parameter
-    private static String getSQLPredicateFromLoanStatus(Loan.LoanStatus status) {
+    private static String getSQLPredicateFromLoanStatus(LoanStatus status) {
         switch (status) {
             case NEW: return FLD_DATE_OUT + " IS NULL";
             case RETURNED: return FLD_DATE_IN + " IS NOT NULL";
             case OUT: return FLD_DATE_OUT + " IS NOT NULL AND " + FLD_DATE_IN  + " IS NULL";
-            case OVERDUE: return getSQLPredicateFromLoanStatus(Loan.LoanStatus.OUT) +
+            case OVERDUE: return getSQLPredicateFromLoanStatus(LoanStatus.OUT) +
                     " AND " + FLD_DATE_OUT + ">" + FLD_DUE_DATE;
             default:
                 return "";
@@ -65,7 +96,7 @@ public class LoanRepositoryImpl implements LoanRepository {
     }
 
     // generates full SQL search string for loans search or counting
-    private static String getSqlWithSearchCriteria(Loan.LoanStatus status,
+    private static String getSqlWithSearchCriteria(LoanStatus status,
                                                    Integer userId,
                                                    int currentPage, int recordsPerPage,
                                                    boolean countOnly
@@ -93,8 +124,7 @@ public class LoanRepositoryImpl implements LoanRepository {
         return sb.toString();
     }
 
-    public static int countLoans(Loan.LoanStatus status, Integer userId, String languageId) {
-        List<LoanBean> bookLoanList = null;
+    public static int countLoans(LoanStatus status, Integer userId, String languageId) {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -123,9 +153,13 @@ public class LoanRepositoryImpl implements LoanRepository {
         return 0;
     }
 
-    public static List<LoanBean> findLoans(Loan.LoanStatus status, Integer userId, String languageId,
-                                           int currentPage, int recordsPerPage) {
-        List<LoanBean> bookLoanList = null;
+    public static List<Loan> findLoans(
+            LoanStatus status,
+            Integer userId, String languageId,
+            int currentPage,
+            int recordsPerPage
+    ) {
+        List<Loan> loans = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -150,14 +184,14 @@ public class LoanRepositoryImpl implements LoanRepository {
             }
 
             rs = pstmt.executeQuery();
-            bookLoanList = new BookLoanMapper().mapRows(rs);
+            loans = new BookLoanMapper().mapRows(rs);
         } catch (SQLException ex) {
             DBManager.getInstance().rollbackAndClose(con);
             ex.printStackTrace();
         } finally {
             DBManager.getInstance().commitAndClose(con);
         }
-        return bookLoanList;
+        return loans;
     }
 
     public static boolean loanNew(int userId, int[] publicationIds) {
@@ -260,37 +294,37 @@ public class LoanRepositoryImpl implements LoanRepository {
         return true;
     }
 
-        private static class BookLoanMapper extends EntityMapper<LoanBean> {
+        private static class BookLoanMapper extends EntityMapper<Loan> {
             @Override
-            public LoanBean mapRow(ResultSet rs) throws SQLException {
-                LoanBean loanBean = new LoanBean();
-                loanBean.setId(rs.getInt(FLD_ID));
-                loanBean.setUserId(rs.getInt(FLD_USER_ID));
-                loanBean.setBookCopyId(rs.getInt(FLD_BOOK_COPY_ID));
+            public Loan mapRow(ResultSet rs) throws SQLException {
+                Loan loan = new Loan();
+                loan.setId(rs.getInt(FLD_ID));
+                loan.setUserId(rs.getInt(FLD_USER_ID));
+                loan.setBookCopyId(rs.getInt(FLD_BOOK_COPY_ID));
 
                 Date date = rs.getDate(FLD_DATE_OUT);
-                loanBean.setDateOut(date == null ? null : date.toLocalDate());
+                loan.setDateOut(date == null ? null : date.toLocalDate());
 
                 date = rs.getDate(FLD_DUE_DATE);
-                loanBean.setDueDate(date == null ? null : date.toLocalDate());
+                loan.setDueDate(date == null ? null : date.toLocalDate());
 
                 date = rs.getDate(FLD_DATE_IN);
-                loanBean.setDateIn(date == null ? null : date.toLocalDate());
+                loan.setDateIn(date == null ? null : date.toLocalDate());
 
-                loanBean.setReadingRoom(rs.getInt(FLD_READING_ROOM) !=0 );
-                loanBean.setLibCode(rs.getString(FLD_LIB_CODE));
-                loanBean.setBookTitle(rs.getString(FLD_TITLE));
-                loanBean.setBookAuthors(rs.getString(FLD_AUTHORS));
-                loanBean.setBookGenre(rs.getString(FLD_GENRE));
-                loanBean.setBookPublisher(rs.getString(FLD_PUBLISHER));
-                loanBean.setBookPublicationYear(rs.getInt(FLD_YEAR));
-                loanBean.setPrice(rs.getInt(FLD_PRICE));
-                loanBean.setEmail(rs.getString(FLD_EMAIL));
-                loanBean.setFirstName(rs.getString(FLD_FIRST_NAME));
-                loanBean.setLastName(rs.getString(FLD_LAST_NAME));
-                loanBean.setBlocked(rs.getInt(FLD_BLOCKED) !=0 );
+                loan.setReadingRoom(rs.getInt(FLD_READING_ROOM) !=0 );
+                loan.setLibCode(rs.getString(FLD_LIB_CODE));
+                loan.setBookTitle(rs.getString(FLD_TITLE));
+                loan.setBookAuthors(rs.getString(FLD_AUTHORS));
+                loan.setBookGenre(rs.getString(FLD_GENRE));
+                loan.setBookPublisher(rs.getString(FLD_PUBLISHER));
+                loan.setBookPublicationYear(rs.getInt(FLD_YEAR));
+                loan.setPrice(rs.getInt(FLD_PRICE));
+                loan.setEmail(rs.getString(FLD_EMAIL));
+                loan.setFirstName(rs.getString(FLD_FIRST_NAME));
+                loan.setLastName(rs.getString(FLD_LAST_NAME));
+                loan.setBlocked(rs.getInt(FLD_BLOCKED) != 0 );
                 
-                return loanBean;
+                return loan;
             }
         }
     }

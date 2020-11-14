@@ -1,4 +1,4 @@
-package com.epam.dmivapi.entity;
+package com.epam.dmivapi.model;
 
 public class Genre extends Entity {
     private int bookId;

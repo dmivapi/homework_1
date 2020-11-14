@@ -6,17 +6,38 @@
 
 <tlib-version> 1.0 </tlib-version>
     <short-name> library-aid </short-name>
-    <uri> FinalProject.dmivapi.epam.com/WEB-INF/library-aid.tld </uri>
+    <uri>homework_1.dmivapi.epam.com/WEB-INF/library-aid.tld</uri>
     <tag>
         <name> getLoanStatusBadge </name>
         <tag-class>com.epam.dmivapi.tag.LoanStatusBadge</tag-class>
         <body-content> empty </body-content>
 
         <attribute>
-            <name>loanBean</name>
+            <name>loanStatus</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
-            <type>com.epam.dmivapi.bean.LoanBean</type>
+            <type>com.epam.dmivapi.dto.LoanStatus</type>
+        </attribute>
+
+        <attribute>
+            <name>readingRoom</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>
+
+        <attribute>
+            <name>dueDate</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.time.LocalDate</type>
+        </attribute>
+
+        <attribute>
+            <name>price</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>int</type>
         </attribute>
     </tag>
 </taglib>

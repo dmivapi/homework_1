@@ -2,7 +2,7 @@ package com.epam.dmivapi.repository.impl;
 
 import com.epam.dmivapi.repository.impl.db.DBManager;
 import com.epam.dmivapi.repository.impl.db.EntityMapper;
-import com.epam.dmivapi.entity.User;
+import com.epam.dmivapi.model.User;
 
 import java.sql.*;
 import java.util.List;

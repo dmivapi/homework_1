@@ -3,6 +3,7 @@
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ tag import="com.epam.dmivapi.ContextParam" %>
 <%@ tag import="com.epam.dmivapi.service.impl.command.Command" %>
+<%@ tag import="com.epam.dmivapi.dto.LoanStatus" %>
 
 <%--
     Buttons representing actions that can be performed
@@ -10,7 +11,7 @@
 --%>
 
 <%@ attribute name="loanStatus" required="true"
-              type="com.epam.dmivapi.entity.Loan.LoanStatus"
+              type="com.epam.dmivapi.dto.LoanStatus"
               rtexprvalue="true"
 %>
 <%@ attribute name="loanBlocked" required="true"
@@ -21,7 +22,7 @@
 <%@ attribute name="loanId" required="true" rtexprvalue="true" %>
 
 <div class="btn-group dropright">
-    <c:if test = "<%= loanStatus != loanStatus.RETURNED %>">
+    <c:if test = "<%= loanStatus != LoanStatus.RETURNED %>">
       <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <fmt:message key="list_loans_jsp.button.actions" />
       </button>

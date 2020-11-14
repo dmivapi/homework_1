@@ -1,7 +1,7 @@
 package com.epam.dmivapi.service.impl.command;
 
 import com.epam.dmivapi.repository.impl.BookRepositoryImpl;
-import com.epam.dmivapi.entity.Book;
+import com.epam.dmivapi.model.Book;
 import com.epam.dmivapi.ContextParam;
 import org.apache.log4j.Logger;
 

@@ -1,4 +1,4 @@
-package com.epam.dmivapi.entity;
+package com.epam.dmivapi.model;
 
 public class Author extends Entity {
     private String lastName;

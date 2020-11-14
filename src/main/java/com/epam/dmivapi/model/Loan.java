@@ -1,8 +1,15 @@
-package com.epam.dmivapi.bean;
+package com.epam.dmivapi.model;
 
-import com.epam.dmivapi.entity.Loan;
+import java.time.LocalDate;
 
-public class LoanBean extends Loan {
+public class Loan extends Entity {
+    private Integer userId;
+    private Integer bookCopyId;
+    private LocalDate dateOut;
+    private LocalDate dueDate;
+    private LocalDate dateIn;
+    private boolean readingRoom;
+
     private String libCode; // code for in-library referencing
     private String bookTitle;
     private String bookAuthors;
@@ -10,12 +17,63 @@ public class LoanBean extends Loan {
     private String bookPublisher;
     private int bookPublicationYear;
     private int price;
+
     private String email; // login
     private String firstName;
     private String lastName;
-    private Boolean blocked;
+    private boolean blocked;
 
-    public String getLibCode() { return libCode; }
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getBookCopyId() {
+        return bookCopyId;
+    }
+
+    public void setBookCopyId(Integer bookCopyId) {
+        this.bookCopyId = bookCopyId;
+    }
+
+    public LocalDate getDateOut() {
+        return dateOut;
+    }
+
+    public void setDateOut(LocalDate dateOut) {
+        this.dateOut = dateOut;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public LocalDate getDateIn() {
+        return dateIn;
+    }
+
+    public void setDateIn(LocalDate dateIn) {
+        this.dateIn = dateIn;
+    }
+
+    public boolean isReadingRoom() {
+        return readingRoom;
+    }
+
+    public void setReadingRoom(boolean readingRoom) {
+        this.readingRoom = readingRoom;
+    }
+
+    public String getLibCode() {
+        return libCode;
+    }
 
     public void setLibCode(String libCode) {
         this.libCode = libCode;
@@ -93,11 +151,11 @@ public class LoanBean extends Loan {
         this.lastName = lastName;
     }
 
-    public Boolean getBlocked() {
+    public boolean isBlocked() {
         return blocked;
     }
 
-    public void setBlocked(Boolean blocked) {
+    public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
 }

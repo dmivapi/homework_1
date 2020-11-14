@@ -18,13 +18,21 @@ public enum Command {
     USER_BLOCK("userBlock", new UserBlockCmd(), false),
     USER_REMOVE("userRemove", new UserRemoveCmd(), true),
 
-    LIST_BOOKS("listBooks", new ListBooksCmd(), false),
-    BOOK_NEW("bookNew", new BookNewCmd(), true),
-    BOOK_REMOVE("bookRemove", new BookRemoveCmd(), true),
+//    LIST_BOOKS("listBooks", new ListBooksCmd(), false),
+//    BOOK_NEW("bookNew", new BookNewCmd(), true),
+//    BOOK_REMOVE("bookRemove", new BookRemoveCmd(), true),
 
-    LIST_LOANS_OF_SELF("listLoansOfSelf", new ListLoansOfSelfCmd(), false),
-    LIST_LOANS_OF_USER("listLoansOfUser", new ListLoansOfUserCmd(), false),
-    LIST_LOANS_OF_ALL("listLoansOfAll", new ListLoansOfAllCmd(), false),
+    LIST_BOOKS("/book/list", null, false),
+    BOOK_NEW("/book/new", null, true),
+    BOOK_REMOVE("/book/remove", null, true),
+
+//    LIST_LOANS_OF_SELF("listLoansOfSelf", new ListLoansOfSelfCmd(), false),
+//    LIST_LOANS_OF_USER("listLoansOfUser", new ListLoansOfUserCmd(), false),
+//    LIST_LOANS_OF_ALL("listLoansOfAll", new ListLoansOfAllCmd(), false),
+
+    LIST_LOANS_OF_SELF("/loan/listSelf", null, false),
+    LIST_LOANS_OF_USER("/loan/", null, false),
+    LIST_LOANS_OF_ALL("/loan/", null, false),
 
     LIST_USERS_LIBRARIANS("listUsersLibrarians", new ListUsersLibrariansCmd(), false),
     LIST_USERS_READERS_FOR_ADMIN("listUsersReadersForAdmin",new ListUsersReadersForAdminCmd(), false),

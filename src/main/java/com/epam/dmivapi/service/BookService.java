@@ -1,11 +1,11 @@
 package com.epam.dmivapi.service;
 
-import com.epam.dmivapi.entity.Book;
+import com.epam.dmivapi.model.Book;
 
 import java.util.List;
 
 public interface BookService {
-    List<Book> findBookByTitleAndAuthor(
+    List<Book> getBooksByTitleAndAuthor(
             String title,
             String author,
             String genreLanguageCode,
@@ -15,7 +15,7 @@ public interface BookService {
             int recordsPerPage
     );
 
-    Integer countBookPageByTitleAndAuthor(
+    int countBooksPageByTitleAndAuthor(
             String title,
             String author,
             String genreLanguageCode,

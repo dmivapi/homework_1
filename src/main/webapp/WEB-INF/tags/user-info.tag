@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jspf/directive/taglibs.jspf" %>
 <%@ tag import="com.epam.dmivapi.ContextParam" %>
 
-<%@attribute name="user" type="com.epam.dmivapi.entity.User" %>
+<%@attribute name="user" type="com.epam.dmivapi.model.User" %>
 
 <input type="hidden" name="${ContextParam.USER_ID_TO_PROCESS}" value="${param[ContextParam.USER_ID_TO_PROCESS]}">
 

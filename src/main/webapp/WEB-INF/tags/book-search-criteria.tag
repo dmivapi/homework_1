@@ -40,7 +40,7 @@
             </select>
         </div>
         <div class="col-auto my-1">
-            <h:button-submit buttonKey="search_book_criteria_tag.button.search" buttonAction="${Command.LIST_BOOKS}" subClass="btn-outline-primary btn-sm"/>
+            <h:button-submit buttonKey="search_book_criteria_tag.button.search" buttonAction="${Command.LIST_BOOKS.systemName}" subClass="btn-outline-primary btn-sm"/>
         </div>
     </div>
 

@@ -18,7 +18,7 @@ public class LibraryAppConfig {
     @Bean
     protected InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/jsp/");
+        viewResolver.setPrefix("/views/");
         viewResolver.setSuffix(".jsp");
 
         return  viewResolver;

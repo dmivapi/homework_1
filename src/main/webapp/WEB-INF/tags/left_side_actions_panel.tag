@@ -1,7 +1,7 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ tag import="com.epam.dmivapi.entity.User.Role" %>
+<%@ tag import="com.epam.dmivapi.model.User.Role" %>
 <%@ tag import="com.epam.dmivapi.ContextParam" %>
 <%@ tag import="com.epam.dmivapi.service.impl.command.Command" %>
 
@@ -42,7 +42,6 @@
         {
             event.preventDefault();
             $('#${ContextParam.MAIN_PAGE_FORM}').attr('action', $(this).attr('href'));
-            <%--$("#${ContextParam.COMMAND}").val($(this).attr('href'));--%>
             $('#${ContextParam.PGN_CURRENT_PAGE}').val(1);
             $('#${ContextParam.MAIN_PAGE_FORM}').submit();
         });

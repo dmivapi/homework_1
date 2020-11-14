@@ -1,4 +1,4 @@
-package com.epam.dmivapi.entity;
+package com.epam.dmivapi.model;
 
 public class Publisher extends Entity {
     private String name;
@@ -6,7 +6,6 @@ public class Publisher extends Entity {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }

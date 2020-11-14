@@ -3,10 +3,10 @@ package com.epam.dmivapi.repository.impl;
 import com.epam.dmivapi.repository.impl.db.DBManager;
 import com.epam.dmivapi.repository.impl.db.DaoUtil;
 import com.epam.dmivapi.repository.impl.db.EntityMapper;
-import com.epam.dmivapi.entity.Author;
-import com.epam.dmivapi.entity.Book;
-import com.epam.dmivapi.entity.Genre;
-import com.epam.dmivapi.entity.Publisher;
+import com.epam.dmivapi.model.Author;
+import com.epam.dmivapi.model.Book;
+import com.epam.dmivapi.model.Genre;
+import com.epam.dmivapi.model.Publisher;
 import com.epam.dmivapi.repository.BookRepository;
 import org.springframework.stereotype.Repository;
 
@@ -35,6 +35,23 @@ public class BookRepositoryImpl implements BookRepository {
         possibleSortFields.add("publisher");
         possibleSortFields.add("year");
     }
+
+    @Override
+    public List<Book> findBooksByTitleAndAuthor(
+            String title, String author,
+            String genreLanguageCode,
+            String orderByField, boolean isAscending,
+            int currentPage, int recordsPerPage
+    ){
+        return findBooks(genreLanguageCode, title, author, orderByField, isAscending, currentPage, recordsPerPage);
+    }
+
+    @Override
+    public int countBooksByTitleAndAuthor(String title, String author, String genreLanguageCode) {
+        return countBooks(genreLanguageCode, title, author);
+    }
+
+// --------------------------------------------------------------------------
 
     private static PreparedStatement fillPStatement(
             Connection con,
@@ -83,7 +100,7 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     // for pagination purposes
-    public static int countBooks(String languageCode, String title, String author) {
+    private static int countBooks(String languageCode, String title, String author) {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -104,22 +121,7 @@ public class BookRepositoryImpl implements BookRepository {
         return 0; // something went wrong
     }
 
-    @Override
-    public List<Book> findBookByTitleAndAuthor(
-            String title, String author,
-            String genreLanguageCode,
-            String orderByField, boolean isAscending,
-            int currentPage, int recordsPerPage
-    ){
-        return findBooks(genreLanguageCode, title, author, orderByField, isAscending, currentPage, recordsPerPage);
-    }
-
-    @Override
-    public Integer countBookByTitleAndAuthor(String title, String author, String genreLanguageCode) {
-        return countBooks(genreLanguageCode, title, author);
-    }
-
-    public static List<Book> findBooks(String languageCode, String title, String author,
+    private static List<Book> findBooks(String languageCode, String title, String author,
                                        String orderByField, boolean isAscending,
                                        int currentPage, int recordsPerPage
                                        ) {

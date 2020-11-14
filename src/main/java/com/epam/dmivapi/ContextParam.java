@@ -1,6 +1,6 @@
 package com.epam.dmivapi;
 
-import com.epam.dmivapi.entity.User;
+import com.epam.dmivapi.model.User;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
