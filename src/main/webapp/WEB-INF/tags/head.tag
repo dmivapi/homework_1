@@ -30,7 +30,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="/jsp/css/library-final-proj.css" rel="stylesheet">
+        <link href="/static/css/library-final-proj.css" rel="stylesheet">
 
 
     <!-- MDB core JavaScript -->
