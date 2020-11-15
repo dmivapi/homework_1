@@ -60,7 +60,7 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public int countLoans(String genreLanguageCode, int recordsPerPage) {
-        return calculateNumOfPages(
+        return ServiceUtils.calculateNumOfPages(
                 loanRepository.countLoans(genreLanguageCode),
                 recordsPerPage
         );
@@ -68,18 +68,9 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public int countLoansByUserId(int userId, String genreLanguageCode, int recordsPerPage) {
-        return calculateNumOfPages(
+        return ServiceUtils.calculateNumOfPages(
                 loanRepository.countLoansByUserId(userId, genreLanguageCode),
                 recordsPerPage
         );
-    }
-
-    private int calculateNumOfPages(int numOfRows, int recordsPerPage) {
-        int nOfPages = numOfRows / recordsPerPage;
-
-        if (numOfRows % recordsPerPage > 0)
-            nOfPages++;
-
-        return nOfPages;
     }
 }

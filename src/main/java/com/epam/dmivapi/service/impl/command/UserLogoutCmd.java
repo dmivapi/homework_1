@@ -1,6 +1,6 @@
 package com.epam.dmivapi.service.impl.command;
 
-import com.epam.dmivapi.model.User;
+import com.epam.dmivapi.dto.Role;
 import com.epam.dmivapi.ContextParam;
 import com.epam.dmivapi.Path;
 
@@ -14,7 +14,7 @@ public class UserLogoutCmd extends AbstractCmd {
     public String execute(HttpServletRequest request) throws IOException, ServletException {
         HttpSession session = request.getSession();
 
-        ContextParam.setCurrentUserRole(session, User.Role.GUEST);
+        ContextParam.setCurrentUserRole(session, Role.GUEST);
         ContextParam.setCurrentUser(session, null);
 
         return Path.PAGE__LOGOUT;

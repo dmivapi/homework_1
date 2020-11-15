@@ -1,5 +1,6 @@
 package com.epam.dmivapi.repository.impl;
 
+import com.epam.dmivapi.dto.Role;
 import com.epam.dmivapi.repository.impl.db.DBManager;
 import com.epam.dmivapi.repository.impl.db.EntityMapper;
 import com.epam.dmivapi.model.User;
@@ -43,7 +44,19 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String SQL_DELETE_USER =
             "DELETE FROM user WHERE " + FLD_ID + "=?";
 
-    private static String getSqlWithCriteria(User.Role role, Boolean isBlocked,
+    // -------------------------------------------------------------------------
+    @Override
+    public List<User> findUsersByRole(Role role, int currentPage, int recordsPerPage) {
+        return findUsers(role, null, currentPage, recordsPerPage);
+    }
+
+    @Override
+    public int countUsersByRole(Role role) {
+        return countUsers(role, null);
+    }
+    // -------------------------------------------------------------------------
+
+    private static String getSqlWithCriteria(Role role, Boolean isBlocked,
                                              int recordsPerPage,
                                              boolean countOnly) {
         StringBuilder sb = new StringBuilder(countOnly ?
@@ -70,7 +83,7 @@ public class UserRepositoryImpl implements UserRepository {
         return sb.toString();
     }
 
-    public static int countUsers(User.Role role, Boolean isBlocked) {
+    public static int countUsers(Role role, Boolean isBlocked) {
         List<User> userList = null;
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -100,8 +113,10 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return 0;
     }
-    public static List<User> findUsers(User.Role role, Boolean isBlocked,
-                                       int currentPage, int recordsPerPage) {
+    public static List<User> findUsers(Role role,
+                                       Boolean blocked,
+                                       int currentPage,
+                                       int recordsPerPage) {
         List<User> userList = null;
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -112,14 +127,14 @@ public class UserRepositoryImpl implements UserRepository {
             con = DBManager.getInstance().getConnection();
 
             pstmt = con.prepareStatement(
-                    getSqlWithCriteria(role, isBlocked, recordsPerPage,false)
+                    getSqlWithCriteria(role, blocked, recordsPerPage,false)
             );
 
             int k = 1;
             if (role != null)
                 pstmt.setString(k++, role.name().toLowerCase());
-            if (isBlocked != null)
-                pstmt.setInt(k++, isBlocked ? 1 : 0);
+            if (blocked != null)
+                pstmt.setInt(k++, blocked ? 1 : 0);
             if (shouldLimit) {
                 pstmt.setInt(k++, (currentPage - 1) * recordsPerPage);
                 pstmt.setInt(k++, recordsPerPage);
@@ -159,16 +174,6 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return user;
     }
-
-/*    // appends a number of placeholders to SQL with IN type condition
-    private static String getSqlWithInPlaceholders(String sqlString, int numOfUsers) {
-        StringBuilder sb = new StringBuilder(sqlString);
-
-        for (int i = 0; i < numOfUsers; i++)
-            sb.append(", ?");
-
-        return sb.append(")").toString();
-    }*/
 
     public static boolean updateUserBlockStatus(int userId, boolean isBlocked) {
         Connection con = null;
@@ -271,7 +276,7 @@ public class UserRepositoryImpl implements UserRepository {
                 user.setFirstName(rs.getString(FLD_FIRST_NAME));
                 user.setLastName(rs.getString(FLD_LAST_NAME));
                 user.setLocaleName(rs.getString(FLD_LOCALE_NAME));
-                user.setUserRole(User.Role.valueOf(rs.getString(FLD_USER_ROLE).toUpperCase()));
+                user.setUserRole(Role.valueOf(rs.getString(FLD_USER_ROLE).toUpperCase()));
                 user.setBlocked(rs.getInt(FLD_BLOCKED) == 1);
                 return user;
             } catch (SQLException e) {

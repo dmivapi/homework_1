@@ -39,18 +39,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public int countBooksPageByTitleAndAuthor(
+    public int countBooksPagesByTitleAndAuthor(
             String title,
             String author,
             String genreLanguageCode,
             int recordsPerPage
     ) {
-        int rows = bookRepository.countBooksByTitleAndAuthor(title, author, genreLanguageCode);
-
-        int nOfPages = rows / recordsPerPage;
-        if (rows % recordsPerPage > 0)
-            nOfPages++;
-
-        return nOfPages;
+        return ServiceUtils.calculateNumOfPages(
+                bookRepository.countBooksByTitleAndAuthor(title, author, genreLanguageCode),
+                recordsPerPage
+        );
     }
 }

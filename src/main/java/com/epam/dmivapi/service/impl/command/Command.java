@@ -34,9 +34,9 @@ public enum Command {
     LIST_LOANS_OF_USER("/loan/", null, false),
     LIST_LOANS_OF_ALL("/loan/", null, false),
 
-    LIST_USERS_LIBRARIANS("listUsersLibrarians", new ListUsersLibrariansCmd(), false),
-    LIST_USERS_READERS_FOR_ADMIN("listUsersReadersForAdmin",new ListUsersReadersForAdminCmd(), false),
-    LIST_USERS_READERS_FOR_LIBRARIAN("listUsersReadersForLibrarian",new ListUsersReadersForLibrarianCmd(), false),
+    LIST_USERS_LIBRARIANS("/user/admin/librarians", null, false),
+    LIST_USERS_READERS_FOR_ADMIN("/user/admin/borrowers",null, false),
+    LIST_USERS_READERS_FOR_LIBRARIAN("/user/librarian/borrowers",null, false),
 
     LOAN_NEW("loanNew", new LoanNewCmd(), false),
     LOAN_OUT("loanOut", new LoanOutCmd(), false),

@@ -1,8 +1,9 @@
 package com.epam.dmivapi.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public enum LoanStatus {
+public enum LoanStatus  implements Serializable {
     NEW, OUT, OVERDUE, RETURNED;
 
     public static LoanStatus of(LoanDto loanDto) {

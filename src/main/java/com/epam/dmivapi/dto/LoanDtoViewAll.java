@@ -2,10 +2,11 @@ package com.epam.dmivapi.dto;
 
 import com.epam.dmivapi.model.Loan;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class LoanDtoViewAll {
+public class LoanDtoViewAll implements Serializable {
     private Integer id;
     private LocalDate dateOut;
     private LocalDate dueDate;

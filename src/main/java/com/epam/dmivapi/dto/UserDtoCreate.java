@@ -1,15 +1,15 @@
-package com.epam.dmivapi.model;
+package com.epam.dmivapi.dto;
 
-import com.epam.dmivapi.dto.Role;
+import java.io.Serializable;
+import java.util.Objects;
 
-public class User extends Entity {
+public class UserDtoCreate implements Serializable {
     private String email;
     private String password;
     private String firstName;
     private String lastName;
     private String localeName;
     private Role userRole;
-    private boolean blocked;
 
     public String getEmail() {
         return email;
@@ -43,9 +43,13 @@ public class User extends Entity {
         this.lastName = lastName;
     }
 
-    public String getLocaleName() { return localeName; }
+    public String getLocaleName() {
+        return localeName;
+    }
 
-    public void setLocaleName(String localeName) { this.localeName = localeName; }
+    public void setLocaleName(String localeName) {
+        this.localeName = localeName;
+    }
 
     public Role getUserRole() {
         return userRole;
@@ -55,11 +59,16 @@ public class User extends Entity {
         this.userRole = userRole;
     }
 
-    public boolean isBlocked() {
-        return blocked;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDtoCreate that = (UserDtoCreate) o;
+        return Objects.equals(email, that.email);
     }
 
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
     }
 }

@@ -1,7 +1,7 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ tag import="com.epam.dmivapi.model.User.Role" %>
+<%@ tag import="com.epam.dmivapi.dto.Role" %>
 <%@ tag import="com.epam.dmivapi.ContextParam" %>
 <%@ tag import="com.epam.dmivapi.service.impl.command.Command" %>
 

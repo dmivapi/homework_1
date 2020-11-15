@@ -12,7 +12,7 @@ import java.util.Objects;
 public class LoanDtoViewAllConverter extends AbstractConverter<Loan, LoanDtoViewAll> {
 
     @Override
-    public LoanDtoViewAll convert(Loan loan) {
+    public LoanDtoViewAll convertForList(Loan loan) {
         if (Objects.isNull(loan)) {
             throw new IllegalArgumentException("Can't convert loan to loanDtoViewAll, loan is  null");
         }

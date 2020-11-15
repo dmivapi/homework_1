@@ -1,6 +1,6 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/jspf/directive/taglibs.jspf" %>
-<%@ tag import="com.epam.dmivapi.model.User.Role" %>
+<%@ tag import="com.epam.dmivapi.dto.Role" %>
 <%@ tag import="com.epam.dmivapi.ContextParam" %>
 <%@ tag import="com.epam.dmivapi.Path" %>
 <%@ tag import="com.epam.dmivapi.service.impl.command.Command" %>

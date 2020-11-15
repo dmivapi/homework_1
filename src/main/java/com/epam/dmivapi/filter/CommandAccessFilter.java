@@ -1,6 +1,6 @@
 package com.epam.dmivapi.filter;
 
-import com.epam.dmivapi.model.User.Role;
+import com.epam.dmivapi.dto.Role;
 import com.epam.dmivapi.ContextParam;
 import com.epam.dmivapi.Path;
 import com.epam.dmivapi.service.impl.command.Command;

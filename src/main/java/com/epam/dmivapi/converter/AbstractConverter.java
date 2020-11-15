@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class AbstractConverter <S, T> {
-    public abstract T convert(S sourceTypeItem);
+    public abstract T convertForList(S sourceTypeItem);
 
     public List<T> convert(List<S> sourceTypeList) {
         return sourceTypeList.stream()
-                .map(this::convert)
+                .map(this::convertForList)
                 .collect(Collectors.toList());
     }
 }

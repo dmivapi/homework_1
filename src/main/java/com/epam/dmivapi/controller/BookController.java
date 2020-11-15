@@ -42,7 +42,7 @@ public class BookController {
         );
         model.addAttribute(ContextParam.BS_BOOKS, books);
 
-        int nOfPages = bookService.countBooksPageByTitleAndAuthor(
+        int nOfPages = bookService.countBooksPagesByTitleAndAuthor(
                 title, author,
                 GENRE_LANGUAGE_CODE,
                 recordsPerPage

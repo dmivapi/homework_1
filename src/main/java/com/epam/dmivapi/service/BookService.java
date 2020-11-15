@@ -15,7 +15,7 @@ public interface BookService {
             int recordsPerPage
     );
 
-    int countBooksPageByTitleAndAuthor(
+    int countBooksPagesByTitleAndAuthor(
             String title,
             String author,
             String genreLanguageCode,

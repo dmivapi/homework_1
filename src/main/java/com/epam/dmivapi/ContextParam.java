@@ -1,5 +1,6 @@
 package com.epam.dmivapi;
 
+import com.epam.dmivapi.dto.Role;
 import com.epam.dmivapi.model.User;
 import org.apache.log4j.Logger;
 
@@ -154,13 +155,13 @@ public class ContextParam {
         log.trace("Set the session attribute: user --> " + user);
     }
 
-    public static User.Role getCurrentUserRole(HttpSession session) {
-        User.Role role = null;
-        role = (User.Role) session.getAttribute(ContextParam.CURRENT_USER_ROLE);
-        return role == null ? User.Role.GUEST : role;
+    public static Role getCurrentUserRole(HttpSession session) {
+        Role role = null;
+        role = (Role) session.getAttribute(ContextParam.CURRENT_USER_ROLE);
+        return role == null ? Role.GUEST : role;
     }
 
-    public static void setCurrentUserRole(HttpSession session, User.Role role) {
+    public static void setCurrentUserRole(HttpSession session, Role role) {
         session.setAttribute(ContextParam.CURRENT_USER_ROLE, role);
         log.trace("Set the session attribute: userRole --> " + role);
     }

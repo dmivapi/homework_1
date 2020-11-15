@@ -21,9 +21,9 @@ public class Path {
     public static final String PAGE__LIST_BOOKS = "listBooks";
     public static final String PAGE__LIST_LOANS_SINGLE_USER = "listLoansSingleUser";
     public static final String PAGE__LIST_LOANS_MULTIPLE_USERS = "listLoansMultipleUsers";
-    public static final String PAGE__LIST_USERS_READERS_FOR_LIBRARIAN = "/jsp/list_users_readers_for_librarian.jsp";
-    public static final String PAGE__LIST_USERS_READERS_FOR_ADMIN = "/jsp/list_users_readers_for_admin.jsp";
-    public static final String PAGE__LIST_USERS_LIBRARIANS = "/jsp/list_users_librarians.jsp";
+    public static final String PAGE__LIST_USERS_READERS_FOR_LIBRARIAN = "listUsersReadersForLibrarian";
+    public static final String PAGE__LIST_USERS_READERS_FOR_ADMIN = "listUsersReadersForAdmin";
+    public static final String PAGE__LIST_USERS_LIBRARIANS = "listUsersLibrarians";
 
     public static String getCurrentPageName(HttpServletRequest request) {
         String fullCmd = request.getParameter(ContextParam.SELF_COMMAND);

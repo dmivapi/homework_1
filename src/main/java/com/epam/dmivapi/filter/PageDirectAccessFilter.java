@@ -1,6 +1,6 @@
 package com.epam.dmivapi.filter;
 
-import com.epam.dmivapi.model.User.Role;
+import com.epam.dmivapi.dto.Role;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;

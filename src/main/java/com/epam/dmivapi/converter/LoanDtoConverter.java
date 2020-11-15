@@ -10,7 +10,7 @@ import java.util.Objects;
 @Component
 public class LoanDtoConverter extends AbstractConverter<Loan, LoanDto> {
     @Override
-    public LoanDto convert(Loan loan) {
+    public LoanDto convertForList(Loan loan) {
         if (Objects.isNull(loan)) {
             throw new IllegalArgumentException("Can't convert loan to loanDto, loan is  null");
         }

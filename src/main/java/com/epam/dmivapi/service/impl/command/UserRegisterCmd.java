@@ -2,7 +2,7 @@ package com.epam.dmivapi.service.impl.command;
 
 import com.epam.dmivapi.repository.impl.UserRepositoryImpl;
 import com.epam.dmivapi.model.User;
-import com.epam.dmivapi.model.User.Role;
+import com.epam.dmivapi.dto.Role;
 import com.epam.dmivapi.ContextParam;
 import org.apache.log4j.Logger;
 
