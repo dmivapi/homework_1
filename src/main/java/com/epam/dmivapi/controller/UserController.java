@@ -2,13 +2,11 @@ package com.epam.dmivapi.controller;
 
 import com.epam.dmivapi.ContextParam;
 import com.epam.dmivapi.Path;
-import com.epam.dmivapi.dto.LoanDto;
 import com.epam.dmivapi.dto.UserDtoList;
 import com.epam.dmivapi.service.UserService;
 import com.epam.dmivapi.dto.Role;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 

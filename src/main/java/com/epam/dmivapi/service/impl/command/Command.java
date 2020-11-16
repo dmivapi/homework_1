@@ -18,30 +18,22 @@ public enum Command {
     USER_BLOCK("userBlock", new UserBlockCmd(), false),
     USER_REMOVE("userRemove", new UserRemoveCmd(), true),
 
-//    LIST_BOOKS("listBooks", new ListBooksCmd(), false),
-//    BOOK_NEW("bookNew", new BookNewCmd(), true),
-//    BOOK_REMOVE("bookRemove", new BookRemoveCmd(), true),
-
     LIST_BOOKS("/book/list", null, false),
     BOOK_NEW("/book/new", null, true),
     BOOK_REMOVE("/book/remove", null, true),
 
-//    LIST_LOANS_OF_SELF("listLoansOfSelf", new ListLoansOfSelfCmd(), false),
-//    LIST_LOANS_OF_USER("listLoansOfUser", new ListLoansOfUserCmd(), false),
-//    LIST_LOANS_OF_ALL("listLoansOfAll", new ListLoansOfAllCmd(), false),
-
     LIST_LOANS_OF_SELF("/loan/listSelf", null, false),
     LIST_LOANS_OF_USER("/loan/", null, false),
-    LIST_LOANS_OF_ALL("/loan/", null, false),
+    LIST_LOANS_OF_ALL("/loan", null, false),
 
     LIST_USERS_LIBRARIANS("/user/admin/librarians", null, false),
     LIST_USERS_READERS_FOR_ADMIN("/user/admin/borrowers",null, false),
     LIST_USERS_READERS_FOR_LIBRARIAN("/user/librarian/borrowers",null, false),
 
-    LOAN_NEW("loanNew", new LoanNewCmd(), false),
-    LOAN_OUT("loanOut", new LoanOutCmd(), false),
-    LOAN_REMOVE("loanRemove", new LoanRemoveCmd(), false),
-    LOAN_IN("loanIn", new LoanInCmd(), false);
+    LOAN_NEW("/loan/new", null, false),
+    LOAN_OUT("/loan/out", null, false),
+    LOAN_REMOVE("/loan/delete", null, false),
+    LOAN_IN("/loan/in", null, false);
 
     private static final Logger log = Logger.getLogger(Command.class);
 

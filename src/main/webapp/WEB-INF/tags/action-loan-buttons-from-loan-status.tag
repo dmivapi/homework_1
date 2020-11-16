@@ -29,7 +29,7 @@
       <div class="dropdown-menu">
     </c:if>
         <c:choose>
-            <c:when test = "<%= loanStatus == loanStatus.NEW %>">
+            <c:when test = "<%= loanStatus == LoanStatus.NEW %>">
             <c:if test = "${not loanBlocked}">
                 <a class="dropdown-item" href="#" data-lid="${loanId}" data-action="${Command.LOAN_OUT.systemName}">
                     <fmt:message key="list_loans_jsp.button.lend_out" />
@@ -39,7 +39,7 @@
                     <fmt:message key="list_loans_jsp.button.remove" />
                 </a>
             </c:when>
-            <c:when test = "<%= loanStatus == loanStatus.OUT || loanStatus == loanStatus.OVERDUE %>">
+            <c:when test = "<%= loanStatus == LoanStatus.OUT || loanStatus == LoanStatus.OVERDUE %>">
                 <a class="dropdown-item" href="#" data-lid="${loanId}" data-action="${Command.LOAN_IN.systemName}">
                     <fmt:message key="list_loans_jsp.button.return" />
                 </a>
@@ -47,7 +47,7 @@
 
             <c:otherwise> </c:otherwise>
         </c:choose>
-<c:if test = "<%= loanStatus != loanStatus.RETURNED %>">
+<c:if test = "<%= loanStatus != LoanStatus.RETURNED %>">
     </div>
 </div>
 </c:if>

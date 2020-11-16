@@ -35,7 +35,6 @@
         </div>
     </div>
 
-<input type="hidden" name="${ContextParam.USER_ID_TO_PROCESS}" id="${ContextParam.USER_ID_TO_PROCESS}">
 <input type="hidden" name="${ContextParam.USR_LOGIN}" id="${ContextParam.USR_LOGIN}">
 <input type="hidden" name="${ContextParam.USR_FIRST_NAME}" id="${ContextParam.USR_FIRST_NAME}">
 <input type="hidden" name="${ContextParam.USR_LAST_NAME}" id="${ContextParam.USR_LAST_NAME}">
@@ -43,8 +42,11 @@
     $(document).ready(function(){
         $('.clickable-row').click(function()
         {
-            $('#${ContextParam.COMMAND}').val("${Command.LIST_LOANS_OF_USER.systemName}");
-            $('#${ContextParam.USER_ID_TO_PROCESS}').val($(this).data('uid'));
+
+            $('#${ContextParam.MAIN_PAGE_FORM}').attr(
+                'action',
+                "${Command.LIST_LOANS_OF_USER.systemName}" + $(this).data('uid')
+            );
             $('#${ContextParam.USR_LOGIN}').val($(this).data('login'));
             $('#${ContextParam.USR_FIRST_NAME}').val($(this).data('fname'));
             $('#${ContextParam.USR_LAST_NAME}').val($(this).data('lname'));

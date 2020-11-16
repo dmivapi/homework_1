@@ -181,7 +181,7 @@ public class ContextParam {
         request.setAttribute(PGN_NUMBER_OF_PAGES, numberOfPages);
     }
 
-    public static int getPgnCurrentPage(HttpServletRequest request) {
+/*    public static int getPgnCurrentPage(HttpServletRequest request) {
         String curPage = (String) request.getParameter(ContextParam.PGN_CURRENT_PAGE);
         int cPage = (curPage == null || curPage.isEmpty()) ?
                 1 : Integer.parseInt(curPage);
@@ -199,7 +199,7 @@ public class ContextParam {
 
     public static void setPgnRecordsPerPage(HttpServletRequest request, Integer numberOfPages) {
         request.setAttribute(PGN_RECORDS_PER_PAGE, numberOfPages);
-    }
+    }*/
 
     private ContextParam() {}
 }

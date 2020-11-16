@@ -81,4 +81,41 @@ public class LoanController {
 
         return Path.PAGE__LIST_LOANS_SINGLE_USER;
     }
+
+    @RequestMapping("/new")
+    public String createLoansByUserIdAndPublicationsList(
+            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) int userId,
+            @RequestParam(ContextParam.PUBLICATIONS_IDS_TO_PROCESS) List<Integer> publicationIds,
+            @RequestParam(ContextParam.SELF_COMMAND) String senderPage
+            ) {
+        loanService.createLoansByUserIdAndPublicationsList(userId, publicationIds);
+        return senderPage;
+    }
+
+    @RequestMapping("/out")
+    public String updateLoanStatusToOutById(
+            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) int loanId,
+            @RequestParam(ContextParam.SELF_COMMAND) String senderPage
+    ){
+        loanService.updateLoanStatusToOutById(loanId);
+        return senderPage;
+    }
+
+    @RequestMapping("/in")
+    public String updateLoanStatusToReturnedById(
+            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) int loanId,
+            @RequestParam(ContextParam.SELF_COMMAND) String senderPage
+    ){
+        loanService.updateLoanStatusToReturnedById(loanId);
+        return senderPage;
+    }
+
+    @RequestMapping("/delete")
+    public String deleteLoanById(
+            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) int loanId,
+            @RequestParam(ContextParam.SELF_COMMAND) String senderPage
+    ){
+        loanService.deleteLoanById(loanId);
+        return senderPage;
+    }
 }

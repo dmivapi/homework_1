@@ -1,5 +1,6 @@
 package com.epam.dmivapi.repository.impl;
 
+import com.epam.dmivapi.ContextParam;
 import com.epam.dmivapi.dto.LoanStatus;
 import com.epam.dmivapi.repository.impl.db.DBManager;
 import com.epam.dmivapi.repository.impl.db.EntityMapper;
@@ -78,6 +79,26 @@ public class LoanRepositoryImpl implements LoanRepository {
     @Override
     public int countLoansByUserId(int userId, String genreLanguageCode) {
         return countLoans(null, userId, genreLanguageCode);
+    }
+
+    @Override
+    public void createLoansByUserIdAndPublicationsList(int userId, List<Integer> publicationIds) {
+        loanNew(userId, publicationIds.stream().mapToInt(i->i).toArray());
+    }
+
+    @Override
+    public void updateLoanStatusToOutById(int loanId, LocalDate dateOut, LocalDate dueDate) {
+        loanOut(loanId, dateOut, dueDate);
+    }
+
+    @Override
+    public void updateLoanStatusToReturnedById(int loanId, LocalDate dateIn){
+        loanIn(loanId, dateIn);
+    }
+
+    @Override
+    public void deleteLoanById(int loanId) {
+        loanRemove(loanId);
     }
 
 // ------------------------------------------------------------------------------------------

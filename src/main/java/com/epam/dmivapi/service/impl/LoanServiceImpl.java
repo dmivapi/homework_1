@@ -10,6 +10,7 @@ import com.epam.dmivapi.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -72,5 +73,26 @@ public class LoanServiceImpl implements LoanService {
                 loanRepository.countLoansByUserId(userId, genreLanguageCode),
                 recordsPerPage
         );
+    }
+
+    @Override
+    public void createLoansByUserIdAndPublicationsList(int userId, List<Integer> publicationIds) {
+        loanRepository.createLoansByUserIdAndPublicationsList(userId, publicationIds);
+    }
+
+    @Override
+    public void updateLoanStatusToOutById(int loanId){
+        final int DEFAULT_TERM = 14;
+        loanRepository.updateLoanStatusToOutById(loanId, LocalDate.now(), LocalDate.now().plusDays(DEFAULT_TERM));
+    }
+
+    @Override
+    public void updateLoanStatusToReturnedById(int loanId){
+        loanRepository.updateLoanStatusToReturnedById(loanId, LocalDate.now());
+    }
+
+    @Override
+    public void deleteLoanById(int loanId){
+        loanRepository.deleteLoanById(loanId);
     }
 }
