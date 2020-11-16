@@ -33,6 +33,7 @@ public class LoanDtoViewAllConverter extends AbstractConverter<Loan, LoanDtoView
         loanDtoViewAll.setBookPublicationYear(loan.getBookPublicationYear());
         loanDtoViewAll.setPrice(loan.getPrice());
 
+        loanDtoViewAll.setUserId(loan.getUserId());
         loanDtoViewAll.setEmail(loan.getEmail());
         loanDtoViewAll.setFirstName(loan.getFirstName());
         loanDtoViewAll.setLastName(loan.getLastName());

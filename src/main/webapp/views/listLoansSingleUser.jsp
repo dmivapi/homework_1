@@ -56,7 +56,7 @@
                                         </c:if>
                                     </c:when>
                                     <c:otherwise> <%-- creating a button for when current role is "Librarian" --%>
-                                        <h:action-loan-buttons-from-loan-status loanStatus="${loan.status}" loanId="${loan.id}" loanBlocked="${loan.blocked}" />
+                                        <h:action-loan-buttons-from-loan-status loanStatus="${loan.status}" loanId="${loan.id}"  userId="${loan.userId}" loanBlocked="${loan.blocked}" />
                                     </c:otherwise>
                                 </c:choose>
                             </td>

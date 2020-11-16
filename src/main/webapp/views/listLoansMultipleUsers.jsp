@@ -37,7 +37,7 @@
                                                         price="${loan.price}" />
                             </td>
                             <td>
-                                <h:action-loan-buttons-from-loan-status loanStatus="${loan.status}" loanId="${loan.id}" loanBlocked="${loan.blocked}" />
+                                <h:action-loan-buttons-from-loan-status loanStatus="${loan.status}" loanId="${loan.id}" userId="${loan.userId}" loanBlocked="${loan.blocked}" />
                             </td>
                         </tr>
                     </c:forEach>

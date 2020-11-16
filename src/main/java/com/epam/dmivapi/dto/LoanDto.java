@@ -22,6 +22,7 @@ public class LoanDto implements Serializable {
     private int bookPublicationYear;
     private int price;
 
+    private int userId;
     private boolean blocked;
 
     public Integer getId() {
@@ -118,6 +119,14 @@ public class LoanDto implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public boolean isBlocked() {

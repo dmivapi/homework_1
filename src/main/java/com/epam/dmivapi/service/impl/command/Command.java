@@ -30,10 +30,10 @@ public enum Command {
     LIST_USERS_READERS_FOR_ADMIN("/user/admin/borrowers",null, false),
     LIST_USERS_READERS_FOR_LIBRARIAN("/user/librarian/borrowers",null, false),
 
-    LOAN_NEW("/loan/new", null, false),
-    LOAN_OUT("/loan/out", null, false),
-    LOAN_REMOVE("/loan/delete", null, false),
-    LOAN_IN("/loan/in", null, false);
+    LOAN_NEW("/new", null, false),
+    LOAN_OUT("/out", null, false),
+    LOAN_REMOVE("/delete", null, false),
+    LOAN_IN("/in", null, false);
 
     private static final Logger log = Logger.getLogger(Command.class);
 

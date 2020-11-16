@@ -22,6 +22,7 @@ public class LoanDtoViewAll implements Serializable {
     private int bookPublicationYear;
     private int price;
 
+    private int userId;
     private String email; // login
     private String firstName;
     private String lastName;
@@ -121,6 +122,14 @@ public class LoanDtoViewAll implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {

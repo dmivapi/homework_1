@@ -31,6 +31,7 @@ public class LoanDtoConverter extends AbstractConverter<Loan, LoanDto> {
         loanDto.setBookPublicationYear(loan.getBookPublicationYear());
         loanDto.setPrice(loan.getPrice());
 
+        loanDto.setUserId(loan.getUserId());
         loanDto.setBlocked(loan.isBlocked());
 
         return loanDto;

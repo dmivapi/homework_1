@@ -14,6 +14,9 @@
               type="com.epam.dmivapi.dto.LoanStatus"
               rtexprvalue="true"
 %>
+<%@ attribute name="userId" required="true"
+              rtexprvalue="true"
+%>
 <%@ attribute name="loanBlocked" required="true"
               type="java.lang.Boolean"
               rtexprvalue="true"
@@ -57,8 +60,11 @@
     $(document).ready(function(){
         $('.dropdown-item').click(function(e)
         {
+            alert(${Command.LIST_LOANS_OF_USER} + userId + $(this).data('action'));
             <%--$('#${ContextParam.COMMAND}').val($(this).data('action'));--%>
-            $('#${ContextParam.MAIN_PAGE_FORM}').attr('action', $(this).data('action'));
+            $('#${ContextParam.MAIN_PAGE_FORM}').attr('action',
+                ${Command.LIST_LOANS_OF_USER} + userId + $(this).data('action')
+            );
             $('#${ContextParam.LOAN_ID_TO_PROCESS}').val($(this).data('lid'));
             $('#${ContextParam.MAIN_PAGE_FORM}').submit();
         });

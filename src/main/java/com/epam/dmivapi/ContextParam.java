@@ -158,7 +158,8 @@ public class ContextParam {
     public static Role getCurrentUserRole(HttpSession session) {
         Role role = null;
         role = (Role) session.getAttribute(ContextParam.CURRENT_USER_ROLE);
-        return role == null ? Role.GUEST : role;
+        //return role == null ? Role.GUEST : role;
+        return Role.LIBRARIAN;
     }
 
     public static void setCurrentUserRole(HttpSession session, Role role) {
