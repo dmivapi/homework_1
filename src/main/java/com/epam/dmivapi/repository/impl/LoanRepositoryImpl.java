@@ -6,6 +6,7 @@ import com.epam.dmivapi.repository.impl.db.DBManager;
 import com.epam.dmivapi.repository.impl.db.EntityMapper;
 import com.epam.dmivapi.model.Loan;
 import com.epam.dmivapi.repository.LoanRepository;
+import com.epam.dmivapi.timed.Timed;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -15,6 +16,7 @@ import java.util.List;
 import static com.epam.dmivapi.repository.impl.db.DaoUtil.getLanguageId;
 
 @Repository
+@Timed
 public class LoanRepositoryImpl implements LoanRepository {
     private static final String FLD_ID = "id";
     private static final String FLD_USER_ID = "user_id";
