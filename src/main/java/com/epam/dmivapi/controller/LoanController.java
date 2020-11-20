@@ -54,7 +54,7 @@ public class LoanController {
 
     @RequestMapping("/{userId}")
     public String getLoansByUserId(
-            @PathVariable int userId,
+            @PathVariable Integer userId,
             @RequestParam(value = ContextParam.PGN_CURRENT_PAGE, defaultValue = "1") int currentPage,
             @RequestParam(value = ContextParam.PGN_RECORDS_PER_PAGE,
                     defaultValue = ContextParam.RECORDS_PER_PAGE) int recordsPerPage,
@@ -84,7 +84,7 @@ public class LoanController {
 
     @RequestMapping("/new")
     public String createLoansByUserIdAndPublicationsList(
-            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) int userId,
+            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) Integer userId,
             @RequestParam(ContextParam.PUBLICATIONS_IDS_TO_PROCESS) List<Integer> publicationIds,
             @RequestParam(ContextParam.SELF_COMMAND) String senderPage
             ) {
@@ -94,7 +94,7 @@ public class LoanController {
 
     @RequestMapping("/out")
     public String updateLoanStatusToOutById(
-            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) int loanId,
+            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) Integer loanId,
             @RequestParam(ContextParam.SELF_COMMAND) String senderPage
     ){
         loanService.updateLoanStatusToOutById(loanId);
@@ -103,7 +103,7 @@ public class LoanController {
 
     @RequestMapping("/in")
     public String updateLoanStatusToReturnedById(
-            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) int loanId,
+            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) Integer loanId,
             @RequestParam(ContextParam.SELF_COMMAND) String senderPage
     ){
         loanService.updateLoanStatusToReturnedById(loanId);
@@ -112,7 +112,7 @@ public class LoanController {
 
     @RequestMapping("/delete")
     public String deleteLoanById(
-            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) int loanId,
+            @RequestParam(ContextParam.LOAN_ID_TO_PROCESS) Integer loanId,
             @RequestParam(ContextParam.SELF_COMMAND) String senderPage
     ){
         loanService.deleteLoanById(loanId);

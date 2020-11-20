@@ -4,6 +4,7 @@ import com.epam.dmivapi.converter.LoanDtoConverter;
 import com.epam.dmivapi.converter.LoanDtoViewAllConverter;
 import com.epam.dmivapi.dto.LoanDto;
 import com.epam.dmivapi.dto.LoanDtoViewAll;
+import com.epam.dmivapi.exception.EntityDoesNotExistException;
 import com.epam.dmivapi.model.Loan;
 import com.epam.dmivapi.repository.LoanRepository;
 import com.epam.dmivapi.service.LoanService;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @Service
 public class LoanServiceImpl implements LoanService {
@@ -35,6 +38,10 @@ public class LoanServiceImpl implements LoanService {
             int currentPage,
             int recordsPerPage
     ) {
+        if (recordsPerPage == 0) {
+            throw new IllegalArgumentException("The number of records per page can not be 0");
+        }
+
         List<Loan> loans = loanRepository.findAll(
                 genreLanguageCode,
                 currentPage,
@@ -45,11 +52,17 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public List<LoanDto> getLoansByUserId(
-            int userId,
+            Integer userId,
             String genreLanguageCode,
             int currentPage,
             int recordsPerPage
     ) {
+        if (isNull(userId)) {
+            throw new EntityDoesNotExistException(String.format("User with ID=%s does not exist", userId));
+        }
+        if (recordsPerPage == 0) {
+            throw new IllegalArgumentException("The number of records per page can not be 0");
+        }
         List<Loan> loans = loanRepository.findLoansByUserId(
                 userId,
                 genreLanguageCode,
@@ -61,6 +74,9 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public int countLoans(String genreLanguageCode, int recordsPerPage) {
+        if (recordsPerPage == 0) {
+            throw new IllegalArgumentException("The number of records per page can not be 0");
+        }
         return ServiceUtils.calculateNumOfPages(
                 loanRepository.countLoans(genreLanguageCode),
                 recordsPerPage
@@ -68,7 +84,10 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public int countLoansByUserId(int userId, String genreLanguageCode, int recordsPerPage) {
+    public int countLoansByUserId(Integer userId, String genreLanguageCode, int recordsPerPage) {
+        if (isNull(userId)) {
+            throw new EntityDoesNotExistException(String.format("User with ID=%s does not exist", userId));
+        }
         return ServiceUtils.calculateNumOfPages(
                 loanRepository.countLoansByUserId(userId, genreLanguageCode),
                 recordsPerPage
@@ -76,23 +95,42 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public void createLoansByUserIdAndPublicationsList(int userId, List<Integer> publicationIds) {
+    public void createLoansByUserIdAndPublicationsList(Integer userId, List<Integer> publicationIds) {
+        if (isNull(userId)) {
+            throw new EntityDoesNotExistException(String.format("User with ID=%s does not exist", userId));
+        }
+
+        if (isNull(publicationIds) || publicationIds.isEmpty()) {
+            throw new EntityDoesNotExistException(
+                    String.format("Publication list=%s can not be created", publicationIds)
+            );
+        }
         loanRepository.createLoansByUserIdAndPublicationsList(userId, publicationIds);
     }
 
     @Override
-    public void updateLoanStatusToOutById(int loanId){
+    public void updateLoanStatusToOutById(Integer loanId){
         final int DEFAULT_TERM = 14;
+
+        if (isNull(loanId)) {
+            throw new EntityDoesNotExistException(String.format("Loan with ID=%s does not exist", loanId));
+        }
         loanRepository.updateLoanStatusToOutById(loanId, LocalDate.now(), LocalDate.now().plusDays(DEFAULT_TERM));
     }
 
     @Override
-    public void updateLoanStatusToReturnedById(int loanId){
+    public void updateLoanStatusToReturnedById(Integer loanId){
+        if (isNull(loanId)) {
+            throw new EntityDoesNotExistException(String.format("Loan with ID=%s does not exist", loanId));
+        }
         loanRepository.updateLoanStatusToReturnedById(loanId, LocalDate.now());
     }
 
     @Override
-    public void deleteLoanById(int loanId){
+    public void deleteLoanById(Integer loanId){
+        if (isNull(loanId)) {
+            throw new EntityDoesNotExistException(String.format("Loan with ID=%s does not exist", loanId));
+        }
         loanRepository.deleteLoanById(loanId);
     }
 }

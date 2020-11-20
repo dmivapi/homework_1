@@ -16,7 +16,7 @@ public class Path {
     public static final String PAGE__LOGOUT = "/jsp/logout.jsp";
     public static final String PAGE__ENTER_USER_INFO = "enter_user_info";
     public static final String PAGE__ENTER_BOOK_INFO = "enter_book_info";
-    public static final String PAGE__ERROR = "/jsp/error_page.jsp";
+    public static final String PAGE__ERROR = "error_page";
 
     public static final String PAGE__LIST_BOOKS = "listBooks";
     public static final String PAGE__LIST_LOANS_SINGLE_USER = "listLoansSingleUser";

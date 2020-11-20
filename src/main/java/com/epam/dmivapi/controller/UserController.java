@@ -22,10 +22,11 @@ public class UserController {
     }
 
     @RequestMapping("/librarian/borrowers")
-    public String getBorrowersForLibrarian(@RequestParam(value = ContextParam.PGN_CURRENT_PAGE, defaultValue = "1") int currentPage,
-                                 @RequestParam(value = ContextParam.PGN_RECORDS_PER_PAGE,
-                                         defaultValue = ContextParam.RECORDS_PER_PAGE) int recordsPerPage,
-                                 Model model
+    public String getAllBorrowersForLibrarian(
+            @RequestParam(value = ContextParam.PGN_CURRENT_PAGE, defaultValue = "1") int currentPage,
+            @RequestParam(value = ContextParam.PGN_RECORDS_PER_PAGE,
+                    defaultValue = ContextParam.RECORDS_PER_PAGE) int recordsPerPage,
+            Model model
     ) {
         List<UserDtoList> users = userService.getUsersByRole(
                 Role.READER,
@@ -46,10 +47,11 @@ public class UserController {
     }
 
     @RequestMapping("/admin/borrowers")
-    public String getBorrowersForAdmin(@RequestParam(value = ContextParam.PGN_CURRENT_PAGE, defaultValue = "1") int currentPage,
-                                       @RequestParam(value = ContextParam.PGN_RECORDS_PER_PAGE,
-                                               defaultValue = ContextParam.RECORDS_PER_PAGE) int recordsPerPage,
-                                       Model model
+    public String getAllBorrowersForAdmin(
+            @RequestParam(value = ContextParam.PGN_CURRENT_PAGE, defaultValue = "1") int currentPage,
+            @RequestParam(value = ContextParam.PGN_RECORDS_PER_PAGE,
+                    defaultValue = ContextParam.RECORDS_PER_PAGE) int recordsPerPage,
+            Model model
     ) {
         List<UserDtoList> users = userService.getUsersByRole(
                 Role.READER,
@@ -70,10 +72,11 @@ public class UserController {
     }
 
     @RequestMapping("/admin/librarians")
-    public String getLibrarians(@RequestParam(value = ContextParam.PGN_CURRENT_PAGE, defaultValue = "1") int currentPage,
-                                @RequestParam(value = ContextParam.PGN_RECORDS_PER_PAGE,
-                                        defaultValue = ContextParam.RECORDS_PER_PAGE) int recordsPerPage,
-                                Model model
+    public String getAllLibrarians(
+            @RequestParam(value = ContextParam.PGN_CURRENT_PAGE, defaultValue = "1") int currentPage,
+            @RequestParam(value = ContextParam.PGN_RECORDS_PER_PAGE,
+                    defaultValue = ContextParam.RECORDS_PER_PAGE) int recordsPerPage,
+            Model model
     ) {
         List<UserDtoList> users = userService.getUsersByRole(
                 Role.LIBRARIAN,

@@ -16,4 +16,6 @@ public interface BookRepository {
             String title, String author,
             String genreLanguageCode
     );
+
+    void save(Book book, int authorId, int publisherId, int genreId, int year, int price, String languageCode, String libCodes[]);
 }

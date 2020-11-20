@@ -51,6 +51,11 @@ public class BookRepositoryImpl implements BookRepository {
         return countBooks(genreLanguageCode, title, author);
     }
 
+    @Override
+    public void save(Book book, int authorId, int publisherId, int genreId, int year, int price, String languageCode, String libCodes[]) {
+        createBook(book, authorId, publisherId, genreId, year, price, languageCode, libCodes);
+    }
+
 // --------------------------------------------------------------------------
 
     private static PreparedStatement fillPStatement(

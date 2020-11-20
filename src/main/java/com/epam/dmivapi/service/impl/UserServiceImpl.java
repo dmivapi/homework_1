@@ -24,12 +24,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDtoList> getUsersByRole(Role role, int currentPage, int recordsPerPage) {
+        if (recordsPerPage == 0) {
+            throw new IllegalArgumentException("The number of records per page can not be 0");
+        }
         List<User> users = userRepository.findUsersByRole(role, currentPage, recordsPerPage);
         return userDtoConverter.convert(users);
     }
 
     @Override
     public int countUsersPagesByRole(Role role, int recordsPerPage) {
+        if (recordsPerPage == 0) {
+            throw new IllegalArgumentException("The number of records per page can not be 0");
+        }
         return ServiceUtils.calculateNumOfPages(
                 userRepository.countUsersByRole(role),
                 recordsPerPage

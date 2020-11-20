@@ -17,7 +17,7 @@ public interface LoanService {
     );
 
     List<LoanDto> getLoansByUserId(
-            int userId,
+            Integer userId,
             String genreLanguageCode,
             int currentPage,
             int recordsPerPage
@@ -29,16 +29,16 @@ public interface LoanService {
     );
 
     int countLoansByUserId(
-            int userId,
+            Integer userId,
             String genreLanguageCode,
             int recordsPerPage
     );
 
-    void createLoansByUserIdAndPublicationsList(int userId, List<Integer> publicationIds);
+    void createLoansByUserIdAndPublicationsList(Integer userId, List<Integer> publicationIds);
 
-    void updateLoanStatusToOutById(int loanId);
+    void updateLoanStatusToOutById(Integer loanId);
 
-    void updateLoanStatusToReturnedById(int loanId);
+    void updateLoanStatusToReturnedById(Integer loanId);
 
-    void deleteLoanById(int loanId);
+    void deleteLoanById(Integer loanId);
 }

@@ -22,6 +22,7 @@ public class LibraryApplicationInitializer implements WebApplicationInitializer 
         ServletRegistration.Dynamic libraryDispatcherServlet =
                 servletContext.addServlet("controller", dispatcherServlet);
 
+        // TODO: set it up to be read from web.xml
         servletContext.setInitParameter(ContextParam.DEFAULT_LOAN_TERM_IN_DAYS,"30");
         servletContext.setInitParameter(ContextParam.LOG4J_CONFIG_LOCATION,"/WEB-INF/log4j.properties");
         servletContext.setInitParameter(Config.FMT_LOCALIZATION_CONTEXT, "resources");

@@ -21,4 +21,6 @@ public interface BookService {
             String genreLanguageCode,
             int recordsPerPage
     );
+
+    void createBook(Book book, int authorId, int publisherId, int genreId, int year, int price, String languageCode, String libCodes[]);
 }

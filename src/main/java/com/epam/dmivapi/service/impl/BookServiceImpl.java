@@ -27,6 +27,9 @@ public class BookServiceImpl implements BookService {
             int currentPage,
             int recordsPerPage
     ) {
+        if (recordsPerPage == 0) {
+            throw new IllegalArgumentException("The number of records per page can not be 0");
+        }
         return bookRepository.findBooksByTitleAndAuthor(
                 title,
                 author,
@@ -45,9 +48,17 @@ public class BookServiceImpl implements BookService {
             String genreLanguageCode,
             int recordsPerPage
     ) {
+        if (recordsPerPage == 0) {
+            throw new IllegalArgumentException("The number of records per page can not be 0");
+        }
         return ServiceUtils.calculateNumOfPages(
                 bookRepository.countBooksByTitleAndAuthor(title, author, genreLanguageCode),
                 recordsPerPage
         );
+    }
+
+    @Override
+    public void createBook(Book book, int authorId, int publisherId, int genreId, int year, int price, String languageCode, String libCodes[]) {
+        bookRepository.save(book, authorId, publisherId, genreId, year, price, languageCode, libCodes);
     }
 }
